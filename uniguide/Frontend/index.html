@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniGuide – Major Recommendation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/quiz.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">
+    <span class="nav-logo-icon">🎓</span>
+    UniGuide
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" id="nav-home">Home</a></li>
+    <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+    
+  </ul>
+  <div class="nav-actions">
+    <div id="nav-guest">
+      <button class="btn btn-outline" onclick="showPage('login')">Log in</button>
+      <button class="btn btn-primary" onclick="showPage('register')">Sign up</button>
+    </div>
+    <div id="nav-auth">
+      <span id="nav-username"></span>
+      <button class="btn btn-outline btn-sm" id="nav-my-results-btn" onclick="goToMyResults()" style="display:none;font-size:0.78rem;padding:0.4rem 0.85rem">📋 My Results</button>
+      <button class="btn btn-outline" onclick="doLogout()">Log out</button>
+    </div>
+    <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle light/dark mode">🌙</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: HOME
+═══════════════════════════════════════════════════ -->
+<div id="page-home" class="page">
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge" id="hero-badge">Smart Career Guidance</div>
+      <h1>Major<br>Recommendation</h1>
+      <p>Discovering your strength. Explore your interest and find the university major that will lead your future career.</p>
+      <button class="btn btn-primary btn-lg" id="hero-cta" onclick="showPage('register')">Start Now</button>
+    </div>
+    <div class="hero-illus">
+      <div class="hero-illus-card">
+        <span class="hero-illus-icon">📚</span>
+        <div class="hero-illus-text">Find your perfect major</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Our Developer</h2>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-avatar">👨‍🎨</div><div class="team-name">Kong Tana</div><div class="team-role">Designer</div></div>
+      <div class="team-card"><div class="team-avatar">👩‍💻</div><div class="team-name">Phat Khemarin</div><div class="team-role">Backend</div></div>
+      <div class="team-card"><div class="team-avatar">👨‍💻</div><div class="team-name">Chrin Bunsotepisey</div><div class="team-role">Frontend</div></div>
+      <div class="team-card"><div class="team-avatar">🧑‍💻</div><div class="team-name">Phan Sokunreaksa</div><div class="team-role">Frontend</div></div>
+      <div class="team-card"><div class="team-avatar">👨‍🔬</div><div class="team-name">Sum Sopheranut</div><div class="team-role">Backend</div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Courses</h4>
+        <p>The automated process starts as soon as your clothes go into the machine.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Our solutions</h4>
+        <a href="#">Major Recommendation System</a>
+        <a href="#">Interest &amp; Skill Assessment</a>
+        <a href="#">Career Path Insights</a>
+        <a href="#">University Major Information</a>
+        <a href="#">Personalised Guidance</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Student Guidance</a>
+        <a href="#">Major Selection Help</a>
+        <a href="#">Career Advice Resources</a>
+        <a href="#">User Assistance</a>
+        <a href="#">Continuous Improvement</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 UniGuide. All rights reserved.</div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: REGISTER
+═══════════════════════════════════════════════════ -->
+<div id="page-register" class="page">
+  <div class="auth-page">
+    <div class="auth-wrapper">
+      <div class="auth-logo-wrap" onclick="showPage('home')">
+        <span class="auth-logo-icon">🎓</span>
+        <span class="auth-logo-text">UniGuide</span>
+      </div>
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <div class="auth-tab active" onclick="showPage('register')">Sign Up</div>
+          <div class="auth-tab" onclick="showPage('login')">Log In</div>
+        </div>
+        <div id="reg-alert" class="alert alert-error" style="display:none"></div>
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <input class="form-input" type="text" id="reg-name" placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" id="reg-email" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" id="reg-pass" placeholder="Create a password">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Confirm Password</label>
+          <input class="form-input" type="password" id="reg-confirm" placeholder="Confirm your password">
+        </div>
+        <button class="btn-auth" onclick="doRegister()">Sign Up</button>
+        <p class="auth-note">Already have an account? <a onclick="showPage('login')">Log in</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: LOGIN
+═══════════════════════════════════════════════════ -->
+<div id="page-login" class="page">
+  <div class="auth-page">
+    <div class="auth-wrapper">
+      <div class="auth-logo-wrap" onclick="showPage('home')">
+        <span class="auth-logo-icon">🎓</span>
+        <span class="auth-logo-text">UniGuide</span>
+      </div>
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <div class="auth-tab" onclick="showPage('register')">Sign Up</div>
+          <div class="auth-tab active" onclick="showPage('login')">Log In</div>
+        </div>
+        <div id="login-alert" class="alert alert-error" style="display:none"></div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" id="login-email" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" id="login-pass" placeholder="Enter your password">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Confirm Password</label>
+          <input class="form-input" type="password" placeholder="Re-enter password">
+        </div>
+        <button class="btn-auth" onclick="doLogin()">Log In</button>
+        <p class="auth-note">Don't have an account? <a onclick="showPage('register')">Sign up</a></p>
+        <p class="auth-note" style="margin-top:0.5rem"><a onclick="showPage('admin-login')" class="auth-link-admin">Admin login →</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: ADMIN LOGIN
+═══════════════════════════════════════════════════ -->
+<div id="page-admin-login" class="page">
+  <div class="auth-page">
+    <div class="auth-wrapper">
+      <div class="auth-logo-wrap" onclick="showPage('home')">
+        <span class="auth-logo-icon">🎓</span>
+        <span class="auth-logo-text">UniGuide</span>
+      </div>
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <div class="auth-tab active" style="border-bottom-color:#f59e0b;color:#f59e0b">Log In For Admin</div>
+        </div>
+        <div id="admin-alert" class="alert alert-error" style="display:none"></div>
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <input class="form-input" type="text" id="admin-name" placeholder="Admin name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" id="admin-email" placeholder="Admin email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" id="admin-pass" placeholder="Admin password">
+        </div>
+        <button class="btn-auth" style="background:linear-gradient(135deg,#d97706,#f59e0b)" onclick="doAdminLogin()">Log In as Admin</button>
+        <p class="auth-note"><a onclick="showPage('sa-login')" class="auth-link-sa">Super Admin login →</a></p>
+        <p class="auth-note" style="margin-top:0.25rem"><a onclick="showPage('login')">← Back to user login</a></p>
+        <p class="auth-note" style="margin-top:0.75rem;font-size:0.72rem;color:rgba(255,255,255,0.2)">Demo: admin@uniguide.com / admin123</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: SUPER ADMIN LOGIN
+═══════════════════════════════════════════════════ -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: ABOUT
+═══════════════════════════════════════════════════ -->
+<div id="page-about" class="page">
+  <section class="page-hero">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> | <span style="color:rgba(255,255,255,0.8)">About</span></div>
+    <h1>About us</h1>
+  </section>
+  <div class="about-body">
+    <p class="about-statement">Our app guides students in choosing the right university major by analyzing their interests, skills, and career goals to provide smart recommendations.</p>
+    <h2 class="section-title">Our Developer</h2>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-avatar">👨‍🎨</div><div class="team-name">Kong Tana</div><div class="team-role">Designer</div></div>
+      <div class="team-card"><div class="team-avatar">👩‍💻</div><div class="team-name">Phat Khemarin</div><div class="team-role">Backend</div></div>
+      <div class="team-card"><div class="team-avatar">👨‍💻</div><div class="team-name">Chrin Bunsotepisey</div><div class="team-role">Frontend</div></div>
+      <div class="team-card"><div class="team-avatar">🧑‍💻</div><div class="team-name">Phan Sokunreaksa</div><div class="team-role">Frontend</div></div>
+      <div class="team-card"><div class="team-avatar">👨‍🔬</div><div class="team-name">Sum Sopheranut</div><div class="team-role">Backend</div></div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-top">
+      <div class="footer-col"><h4>Courses</h4><p>The automated process starts as soon as your clothes go into the machine.</p></div>
+      <div class="footer-col"><h4>Our solutions</h4><a href="#">Major Recommendation System</a><a href="#">Interest &amp; Skill Assessment</a><a href="#">Career Path Insights</a><a href="#">University Major Information</a><a href="#">Personalised Guidance</a></div>
+      <div class="footer-col"><h4>Support</h4><a href="#">Student Guidance</a><a href="#">Major Selection Help</a><a href="#">Career Advice Resources</a><a href="#">User Assistance</a><a href="#">Continuous Improvement</a></div>
+    </div>
+    <div class="footer-bottom">© 2025 UniGuide. All rights reserved.</div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: CONTACT
+═══════════════════════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <section class="page-hero">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> | <span style="color:rgba(255,255,255,0.8)">Contact</span></div>
+    <h1>Contact us</h1>
+  </section>
+  <div class="contact-body">
+    <div class="contact-card">
+      <h3>Get in Touch</h3>
+      <div id="contact-alert" style="display:none" class="alert alert-success"></div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="contact-input" id="c-message" placeholder="Write your message here…" rows="4"></textarea>
+      </div>
+      <div class="form-row">
+        <input class="contact-input" type="text" id="c-name" placeholder="Enter Your Name">
+        <input class="contact-input" type="email" id="c-email" placeholder="Email">
+      </div>
+      <div class="form-group" style="margin-bottom:1.25rem">
+        <input class="contact-input" type="text" id="c-subject" placeholder="Enter Subject">
+      </div>
+      <button class="btn-submit" onclick="doContact()">Send Message</button>
+    </div>
+    <div class="info-card">
+      <div class="info-item">
+        <div class="info-icon">🏠</div>
+        <div><div class="info-label">Home</div><div class="info-value">Information</div></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📞</div>
+        <div><div class="info-label">Phone</div><div class="info-value">011 111 111<br><small class="info-small">Information</small></div></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">✉️</div>
+        <div><div class="info-label">Gmail</div><div class="info-value">Gmail.com<br><small class="info-small">Information</small></div></div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-top">
+      <div class="footer-col"><h4>Courses</h4><p>The automated process starts as soon as your clothes go into the machine.</p></div>
+      <div class="footer-col"><h4>Our solutions</h4><a href="#">Major Recommendation System</a><a href="#">Interest &amp; Skill Assessment</a><a href="#">Career Path Insights</a><a href="#">University Major Information</a><a href="#">Personalised Guidance</a></div>
+      <div class="footer-col"><h4>Support</h4><a href="#">Student Guidance</a><a href="#">Major Selection Help</a><a href="#">Career Advice Resources</a><a href="#">User Assistance</a><a href="#">Continuous Improvement</a></div>
+    </div>
+    <div class="footer-bottom">© 2025 UniGuide. All rights reserved.</div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: SUPER ADMIN DASHBOARD (redesigned)
+═══════════════════════════════════════════════════ -->
+<div id="page-sa-dashboard" class="page">
+  <div style="display:flex;min-height:100vh">
+    
+    <aside class="sa-sidebar">
+      <div class="sa-sidebar-brand">
+        <div class="sa-brand-icon">🛡️</div>
+        <div>
+          <div class="sa-brand-text">Super Admin</div>
+        </div>
+      </div>
+      <div style="padding:0.75rem 0">
+        <div class="sa-nav-item active" onclick="showDash('sa-dashboard')"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="sa-nav-item" onclick="showDash('sa-management')"><span class="nav-icon">🛡️</span>Admins Management</div>
+      <div class="sa-nav-item" onclick="showDash('sa-users')"><span class="nav-icon">👥</span>Users Management</div>
+      <div class="sa-nav-item" onclick="showDash('sa-activitylogs')"><span class="nav-icon">📋</span>Activity Logs</div>
+      <div class="sa-nav-item" onclick="showDash('sa-settings')"><span class="nav-icon">⚙️</span>Setting</div>
+      
+      </div>
+      <div class="sa-profile-foot" style="margin-top:auto;padding-bottom:0.5rem">
+        <div class="sa-profile-avatar">👑</div>
+        <div>
+          <div class="sa-profile-name" id="sa-foot-name-sa-dashboard">Tana Kong</div>
+          <div class="sa-profile-role">Super Admin</div>
+        </div>
+      </div>
+      <div class="sa-sign-out">
+        <button onclick="doLogout()">↪ Sign out</button>
+      </div>
+    </aside>
+    <div class="sa-main">
+      
+      <div class="sa-topbar">
+        <div class="sa-topbar-left">
+          <div class="sa-topbar-title">≡ Dashboard</div>
+        </div>
+        <div class="sa-topbar-right">
+          <div class="sa-topbar-search"><span style="color:rgba(109,40,217,0.5)">🔍</span><input placeholder="Search..."></div>
+          <div style="font-size:1.2rem;cursor:pointer;color:#7c3aed">🔔</div>
+          <div class="sa-topbar-avatar">
+            <div class="sa-topbar-avatar-img">👑</div>
+            <div class="sa-topbar-avatar-info">
+              <div class="name" id="sa-topbar-name">Tana Kong</div>
+              <div class="role">Super Admin</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sa-content">
+        <div class="sa-welcome-banner">
+          <h2>Welcome Back! Super Admin.</h2>
+          <p>Here's what's happening on the platform today.</p>
+        </div>
+        <!-- Stats -->
+        <div class="sa-stats-row">
+          <div class="sa-stat-card">
+            <div class="sa-stat-icon sa-stat-icon-purple">👤</div>
+            <div><div class="sa-stat-num" id="sa-dash-users">1,256</div><div class="sa-stat-label">Total Users</div></div>
+          </div>
+          <div class="sa-stat-card">
+            <div class="sa-stat-icon sa-stat-icon-yellow">🛡️</div>
+            <div><div class="sa-stat-num" id="sa-dash-admins">12</div><div class="sa-stat-label">Total Admins</div></div>
+          </div>
+          <div class="sa-stat-card">
+            <div class="sa-stat-icon sa-stat-icon-green">✅</div>
+            <div><div class="sa-stat-num">All Systems</div><div class="sa-stat-label">System Status: Operational</div></div>
+          </div>
+        </div>
+        <!-- Recent Activity -->
+        <div class="sa-card">
+          <div class="sa-card-title" style="font-size:1.1rem;font-weight:800">Recent Activity</div>
+          <div class="sa-activity-item"><div class="sa-activity-icon">👑</div><div><div class="sa-activity-text"><strong>Tana</strong> — Promoted Andrew to admin</div><div class="sa-activity-time">3 mins ago</div></div></div>
+          <div class="sa-activity-item"><div class="sa-activity-icon">👑</div><div><div class="sa-activity-text"><strong>Tana</strong> — Promoted Dara to admin</div><div class="sa-activity-time">15 mins ago</div></div></div>
+          <div class="sa-activity-item"><div class="sa-activity-icon">👑</div><div><div class="sa-activity-text"><strong>Tana</strong> — Demoted Andrew to user</div><div class="sa-activity-time">30 mins ago</div></div></div>
+          <div class="sa-activity-item"><div class="sa-activity-icon">👑</div><div><div class="sa-activity-text"><strong>Tana</strong> — Added new user</div><div class="sa-activity-time">45 mins ago</div></div></div>
+          <div class="sa-activity-item"><div class="sa-activity-icon">👑</div><div><div class="sa-activity-text"><strong>Tana</strong> — Deleted a user</div><div class="sa-activity-time">1 hour ago</div></div></div>
+          <div class="sa-activity-item"><div class="sa-activity-icon">👑</div><div><div class="sa-activity-text"><strong>Tana</strong> — User reset name</div><div class="sa-activity-time">2 hours ago</div></div></div>
+          <div class="sa-activity-item"><div class="sa-activity-icon">👑</div><div><div class="sa-activity-text"><strong>Tana</strong> — User reset password</div><div class="sa-activity-time">3 hours ago</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: SUPER ADMIN — ADMIN MANAGEMENT (redesigned)
+═══════════════════════════════════════════════════ -->
+<div id="page-sa-management" class="page">
+  <div style="display:flex;min-height:100vh">
+    
+    <aside class="sa-sidebar">
+      <div class="sa-sidebar-brand">
+        <div class="sa-brand-icon">🛡️</div>
+        <div>
+          <div class="sa-brand-text">Super Admin</div>
+        </div>
+      </div>
+      <div style="padding:0.75rem 0">
+        <div class="sa-nav-item" onclick="showDash('sa-dashboard')"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="sa-nav-item active" onclick="showDash('sa-management')"><span class="nav-icon">🛡️</span>Admins Management</div>
+      <div class="sa-nav-item" onclick="showDash('sa-users')"><span class="nav-icon">👥</span>Users Management</div>
+      <div class="sa-nav-item" onclick="showDash('sa-activitylogs')"><span class="nav-icon">📋</span>Activity Logs</div>
+      <div class="sa-nav-item" onclick="showDash('sa-settings')"><span class="nav-icon">⚙️</span>Setting</div>
+      
+      </div>
+      <div class="sa-profile-foot" style="margin-top:auto;padding-bottom:0.5rem">
+        <div class="sa-profile-avatar">👑</div>
+        <div>
+          <div class="sa-profile-name" id="sa-foot-name-sa-management">Tana Kong</div>
+          <div class="sa-profile-role">Super Admin</div>
+        </div>
+      </div>
+      <div class="sa-sign-out">
+        <button onclick="doLogout()">↪ Sign out</button>
+      </div>
+    </aside>
+    <div class="sa-main">
+      
+      <div class="sa-topbar">
+        <div class="sa-topbar-left">
+          <div class="sa-topbar-title">≡ Dashboard</div>
+        </div>
+        <div class="sa-topbar-right">
+          <div class="sa-topbar-search"><span style="color:rgba(109,40,217,0.5)">🔍</span><input placeholder="Search..."></div>
+          <div style="font-size:1.2rem;cursor:pointer;color:#7c3aed">🔔</div>
+          <div class="sa-topbar-avatar">
+            <div class="sa-topbar-avatar-img">👑</div>
+            <div class="sa-topbar-avatar-info">
+              <div class="name" id="sa-topbar-name">Tana Kong</div>
+              <div class="role">Super Admin</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sa-content">
+        <div class="sa-card-title" style="font-size:1.2rem;font-weight:800;color:#3b0764;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between">
+          Admin Management
+          <button class="sa-add-btn" onclick="openModal('modal-add-admin')">+ Add Admin</button>
+        </div>
+        <div class="sa-card">
+          <table class="sa-table" id="sa-admin-table">
+            <thead><tr>
+              <th style="width:30px"></th>
+              <th>Username</th><th>Email</th><th>Role</th><th>Action</th>
+            </tr></thead>
+            <tbody id="admin-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: SUPER ADMIN — USER MANAGEMENT (redesigned)
+═══════════════════════════════════════════════════ -->
+<div id="page-sa-users" class="page">
+  <div style="display:flex;min-height:100vh">
+    
+    <aside class="sa-sidebar">
+      <div class="sa-sidebar-brand">
+        <div class="sa-brand-icon">🛡️</div>
+        <div>
+          <div class="sa-brand-text">Super Admin</div>
+        </div>
+      </div>
+      <div style="padding:0.75rem 0">
+        <div class="sa-nav-item" onclick="showDash('sa-dashboard')"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="sa-nav-item" onclick="showDash('sa-management')"><span class="nav-icon">🛡️</span>Admins Management</div>
+      <div class="sa-nav-item active" onclick="showDash('sa-users')"><span class="nav-icon">👥</span>Users Management</div>
+      <div class="sa-nav-item" onclick="showDash('sa-activitylogs')"><span class="nav-icon">📋</span>Activity Logs</div>
+      <div class="sa-nav-item" onclick="showDash('sa-settings')"><span class="nav-icon">⚙️</span>Setting</div>
+      
+      </div>
+      <div class="sa-profile-foot" style="margin-top:auto;padding-bottom:0.5rem">
+        <div class="sa-profile-avatar">👑</div>
+        <div>
+          <div class="sa-profile-name" id="sa-foot-name-sa-users">Tana Kong</div>
+          <div class="sa-profile-role">Super Admin</div>
+        </div>
+      </div>
+      <div class="sa-sign-out">
+        <button onclick="doLogout()">↪ Sign out</button>
+      </div>
+    </aside>
+    <div class="sa-main">
+      
+      <div class="sa-topbar">
+        <div class="sa-topbar-left">
+          <div class="sa-topbar-title">≡ Dashboard</div>
+        </div>
+        <div class="sa-topbar-right">
+          <div class="sa-topbar-search"><span style="color:rgba(109,40,217,0.5)">🔍</span><input placeholder="Search..."></div>
+          <div style="font-size:1.2rem;cursor:pointer;color:#7c3aed">🔔</div>
+          <div class="sa-topbar-avatar">
+            <div class="sa-topbar-avatar-img">👑</div>
+            <div class="sa-topbar-avatar-info">
+              <div class="name" id="sa-topbar-name">Tana Kong</div>
+              <div class="role">Super Admin</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sa-content">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.75rem">
+          <div class="sa-card-title" style="font-size:1.2rem;font-weight:800;color:#3b0764;margin-bottom:0">Users Management</div>
+          <button class="sa-add-btn" onclick="openModal('modal-add-user')">+ Add User</button>
+        </div>
+        <!-- Online/Offline stats -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+          <div class="sa-online-card">
+            <div>
+              <div class="sa-online-label">User Online</div>
+              <div class="sa-online-num" id="sa-online-count">5,423</div>
+            </div>
+            <div class="sa-online-dot green"></div>
+          </div>
+          <div class="sa-online-card">
+            <div>
+              <div class="sa-online-label">User Offline</div>
+              <div class="sa-online-num" id="sa-offline-count">1,123</div>
+            </div>
+            <div class="sa-online-dot red"></div>
+          </div>
+        </div>
+        <div class="sa-card">
+          <table class="sa-table">
+            <thead><tr>
+              <th style="width:30px"></th>
+              <th>Username</th><th>Email</th><th>Role</th><th>User Status</th><th>Action</th>
+            </tr></thead>
+            <tbody id="user-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: SUPER ADMIN — ACTIVITY LOGS (new)
+═══════════════════════════════════════════════════ -->
+<div id="page-sa-activitylogs" class="page">
+  <div style="display:flex;min-height:100vh">
+    
+    <aside class="sa-sidebar">
+      <div class="sa-sidebar-brand">
+        <div class="sa-brand-icon">🛡️</div>
+        <div>
+          <div class="sa-brand-text">Super Admin</div>
+        </div>
+      </div>
+      <div style="padding:0.75rem 0">
+        <div class="sa-nav-item" onclick="showDash('sa-dashboard')"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="sa-nav-item" onclick="showDash('sa-management')"><span class="nav-icon">🛡️</span>Admins Management</div>
+      <div class="sa-nav-item" onclick="showDash('sa-users')"><span class="nav-icon">👥</span>Users Management</div>
+      <div class="sa-nav-item active" onclick="showDash('sa-activitylogs')"><span class="nav-icon">📋</span>Activity Logs</div>
+      <div class="sa-nav-item" onclick="showDash('sa-settings')"><span class="nav-icon">⚙️</span>Setting</div>
+      
+      </div>
+      <div class="sa-profile-foot" style="margin-top:auto;padding-bottom:0.5rem">
+        <div class="sa-profile-avatar">👑</div>
+        <div>
+          <div class="sa-profile-name" id="sa-foot-name-sa-activitylogs">Tana Kong</div>
+          <div class="sa-profile-role">Super Admin</div>
+        </div>
+      </div>
+      <div class="sa-sign-out">
+        <button onclick="doLogout()">↪ Sign out</button>
+      </div>
+    </aside>
+    <div class="sa-main">
+      
+      <div class="sa-topbar">
+        <div class="sa-topbar-left">
+          <div class="sa-topbar-title">≡ Activity Logs</div>
+        </div>
+        <div class="sa-topbar-right">
+          
+          <div style="font-size:1.2rem;cursor:pointer;color:#7c3aed">🔔</div>
+          <div class="sa-topbar-avatar">
+            <div class="sa-topbar-avatar-img">👑</div>
+            <div class="sa-topbar-avatar-info">
+              <div class="name" id="sa-topbar-name">Tana Kong</div>
+              <div class="role">Super Admin</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sa-content">
+        <!-- Search bar inside content -->
+        <div style="margin-bottom:1.5rem">
+          <div class="sa-topbar-search" style="max-width:320px;border-radius:10px">
+            <span style="color:rgba(109,40,217,0.5)">🔍</span>
+            <input placeholder="Search..." style="width:280px" oninput="filterActivityLogs(this.value)">
+          </div>
+        </div>
+        <div class="sa-card">
+          <table class="sa-table" id="activity-log-table">
+            <thead><tr>
+              <th style="width:30px"></th>
+              <th>Activity</th><th>Admin</th><th>Date</th>
+            </tr></thead>
+            <tbody id="activity-log-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: SUPER ADMIN — SETTINGS (redesigned)
+═══════════════════════════════════════════════════ -->
+<div id="page-sa-settings" class="page">
+  <div style="display:flex;min-height:100vh">
+    
+    <aside class="sa-sidebar">
+      <div class="sa-sidebar-brand">
+        <div class="sa-brand-icon">🛡️</div>
+        <div>
+          <div class="sa-brand-text">Super Admin</div>
+        </div>
+      </div>
+      <div style="padding:0.75rem 0">
+        <div class="sa-nav-item" onclick="showDash('sa-dashboard')"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="sa-nav-item" onclick="showDash('sa-management')"><span class="nav-icon">🛡️</span>Admins Management</div>
+      <div class="sa-nav-item" onclick="showDash('sa-users')"><span class="nav-icon">👥</span>Users Management</div>
+      <div class="sa-nav-item" onclick="showDash('sa-activitylogs')"><span class="nav-icon">📋</span>Activity Logs</div>
+      <div class="sa-nav-item active" onclick="showDash('sa-settings')"><span class="nav-icon">⚙️</span>Setting</div>
+      
+      </div>
+      <div class="sa-profile-foot" style="margin-top:auto;padding-bottom:0.5rem">
+        <div class="sa-profile-avatar">👑</div>
+        <div>
+          <div class="sa-profile-name" id="sa-foot-name-sa-settings">Tana Kong</div>
+          <div class="sa-profile-role">Super Admin</div>
+        </div>
+      </div>
+      <div class="sa-sign-out">
+        <button onclick="doLogout()">↪ Sign out</button>
+      </div>
+    </aside>
+    <div class="sa-main">
+      
+      <div class="sa-topbar">
+        <div class="sa-topbar-left">
+          <div class="sa-topbar-title">≡ Dashboard</div>
+        </div>
+        <div class="sa-topbar-right">
+          <div class="sa-topbar-search"><span style="color:rgba(109,40,217,0.5)">🔍</span><input placeholder="Search..."></div>
+          <div style="font-size:1.2rem;cursor:pointer;color:#7c3aed">🔔</div>
+          <div class="sa-topbar-avatar">
+            <div class="sa-topbar-avatar-img">👑</div>
+            <div class="sa-topbar-avatar-info">
+              <div class="name" id="sa-topbar-name">Tana Kong</div>
+              <div class="role">Super Admin</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sa-content">
+        <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1.2rem;color:#3b0764;margin-bottom:1.5rem">Setting</div>
+        <div class="sa-settings-grid">
+          <!-- Profile card -->
+          <div class="sa-card">
+            <div class="sa-profile-section">
+              <div class="sa-profile-avatar-lg">👑</div>
+              <div>
+                <div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:1rem;color:#3b0764" id="sa-profile-name">Tana Kong</div>
+                <div style="font-size:0.78rem;color:rgba(109,40,217,0.55)" id="sa-profile-email">super@uniguide.com</div>
+              </div>
+            </div>
+            <label class="sa-settings-label">Name</label>
+            <input class="sa-settings-input" type="text" id="sa-edit-name" placeholder="Tana Kong">
+            <label class="sa-settings-label">E-mail</label>
+            <input class="sa-settings-input" type="email" id="sa-edit-email" placeholder="Tanakong.gmail.com">
+            <button class="sa-add-btn" style="font-size:0.82rem;width:100%;justify-content:center;margin-top:0.25rem" onclick="saveSAProfile()">Save Changes</button>
+          </div>
+          <!-- User Activity chart -->
+          <div class="sa-card">
+            <div class="sa-card-title">User Activity</div>
+            <svg viewBox="0 0 300 120" style="width:100%;height:120px">
+              <defs>
+                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.02"/>
+                </linearGradient>
+              </defs>
+              <polyline points="0,100 40,80 80,85 120,50 160,40 200,30 240,55 280,20 300,25"
+                fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/>
+              <polygon points="0,100 40,80 80,85 120,50 160,40 200,30 240,55 280,20 300,25 300,120 0,120"
+                fill="url(#chartGrad)"/>
+              <line x1="0" y1="110" x2="300" y2="110" stroke="rgba(124,58,237,0.15)" stroke-width="1"/>
+            </svg>
+            <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:rgba(109,40,217,0.5);margin-top:0.25rem">
+              <span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
+            </div>
+          </div>
+          <!-- App Settings -->
+          <div class="sa-card">
+            <div class="sa-card-title">App Settings</div>
+            <label class="sa-settings-label">Application Name</label>
+            <input class="sa-settings-input" type="text" value="Career Admin">
+            <label class="sa-settings-label">Primary Color</label>
+            <select class="sa-settings-input" style="cursor:pointer">
+              <option>Purple</option><option>Blue</option><option>Green</option>
+            </select>
+            <label class="sa-settings-label">Language</label>
+            <select class="sa-settings-input" style="cursor:pointer">
+              <option>English</option><option>Khmer</option>
+            </select>
+          </div>
+          <!-- Notifications -->
+          <div class="sa-card">
+            <div class="sa-card-title">Notification</div>
+            <div class="sa-toggle-row">
+              <div class="sa-toggle-label">Email Notification</div>
+              <button class="toggle-switch on" onclick="this.classList.toggle('on')"></button>
+            </div>
+            <div class="sa-toggle-row">
+              <div class="sa-toggle-label">Push Notification</div>
+              <button class="toggle-switch on" onclick="this.classList.toggle('on')"></button>
+            </div>
+            <div class="sa-toggle-row">
+              <div class="sa-toggle-label">SMS Notification</div>
+              <button class="toggle-switch on" onclick="this.classList.toggle('on')"></button>
+            </div>
+            <div class="sa-toggle-row">
+              <div class="sa-toggle-label">Unusual Activity</div>
+              <button class="toggle-switch on" onclick="this.classList.toggle('on')"></button>
+            </div>
+            <div class="sa-toggle-row">
+              <div class="sa-toggle-label">Low Engagement</div>
+              <button class="toggle-switch" onclick="this.classList.toggle('on')"></button>
+            </div>
+            <div style="display:flex;gap:1rem;margin-top:1rem;flex-wrap:wrap">
+              <button class="btn btn-outline" style="font-size:0.82rem;color:#7c3aed;border-color:rgba(124,58,237,0.3);display:flex;align-items:center;gap:0.4rem">🔒 Change Password</button>
+              <button class="btn btn-outline" style="font-size:0.82rem;color:#7c3aed;border-color:rgba(124,58,237,0.3);display:flex;align-items:center;gap:0.4rem">🛡️ Two-Factor Auth <span style="font-size:0.68rem;background:rgba(124,58,237,0.12);padding:0.1rem 0.4rem;border-radius:4px">Enable</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: ADMIN DASHBOARD
+═══════════════════════════════════════════════════ -->
+<div id="page-admin-dashboard" class="page">
+  <div class="dash-layout">
+    <aside class="dash-sidebar">
+      <div class="dash-sidebar-header">
+        <div class="nav-logo" style="font-size:0.95rem;cursor:default">
+          <span class="nav-logo-icon" style="width:32px;height:32px;font-size:0.9rem">🎓</span>UniGuide
+        </div>
+      </div>
+      <div class="dash-nav-section">Dashboard</div>
+      <div class="dash-nav-item active" onclick="showDash('admin-dashboard')"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="dash-nav-section">Management</div>
+      <div class="dash-nav-item" onclick="showDash('admin-users')"><span class="nav-icon">👥</span>User Management</div>
+      <div class="dash-nav-section">System</div>
+      <div class="dash-nav-item" onclick="showDash('admin-settings')"><span class="nav-icon">⚙️</span>Settings</div>
+      <div class="dash-nav-item" onclick="showDash('admin-chat')"><span class="nav-icon">💬</span>Messages</div>
+      <div class="dash-sign-out"><button onclick="doLogout()">Sign Out</button></div>
+    </aside>
+    <main class="dash-main">
+      <div class="dash-topbar">
+        <div>
+          <div class="dash-welcome" style="color:#7c3aed">Welcome Back, <span>Admin</span> 👋</div>
+          <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);margin-top:0.2rem">UniGuide Admin Panel</div>
+        </div>
+        <div class="dash-topbar-right">
+          <div class="dash-search"><span>🔍</span><input placeholder="Search…"></div>
+          <div class="dash-avatar">🛡️</div>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-purple">👥</div>
+          <div><div class="stat-num">1,432</div><div class="stat-label">Active Users</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-pink">🚫</div>
+          <div><div class="stat-num">891</div><div class="stat-label">Inactive Users</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-green">✅</div>
+          <div><div class="stat-num">98%</div><div class="stat-label">Uptime</div></div>
+        </div>
+      </div>
+      <!-- Activity log & chart -->
+      <div class="dash-grid-2">
+        <div class="dash-card">
+          <div class="dash-card-title">Activity Log <small>Past week</small></div>
+          <div class="mini-chart" style="height:80px;margin-bottom:0.5rem">
+            <div class="mini-bar" style="height:45%"></div>
+            <div class="mini-bar" style="height:68%"></div>
+            <div class="mini-bar" style="height:52%"></div>
+            <div class="mini-bar highlight" style="height:88%"></div>
+            <div class="mini-bar" style="height:72%"></div>
+            <div class="mini-bar" style="height:40%"></div>
+            <div class="mini-bar" style="height:33%"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:rgba(255,255,255,0.25);padding:0 2px">
+            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-title">Recent Matches <small>Top recommendations</small></div>
+          <table class="dash-table" style="font-size:0.8rem">
+            <thead><tr><th>Major</th><th>Category</th><th>Popularity</th></tr></thead>
+            <tbody>
+              <tr><td>Data Science</td><td>Technology</td><td><div class="match-bar"><div class="match-fill" style="width:88%"></div></div></td></tr>
+              <tr><td>Computer Sci.</td><td>Technology</td><td><div class="match-bar"><div class="match-fill" style="width:75%"></div></div></td></tr>
+              <tr><td>Business Admin</td><td>Business</td><td><div class="match-bar"><div class="match-fill" style="width:62%"></div></div></td></tr>
+              <tr><td>Psychology</td><td>Social Sci.</td><td><div class="match-bar"><div class="match-fill" style="width:51%"></div></div></td></tr>
+              <tr><td>Engineering</td><td>Technology</td><td><div class="match-bar"><div class="match-fill" style="width:48%"></div></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: ADMIN — USER MANAGEMENT
+═══════════════════════════════════════════════════ -->
+<div id="page-admin-users" class="page">
+  <div class="dash-layout">
+    <aside class="dash-sidebar">
+      <div class="dash-sidebar-header">
+        <div class="nav-logo" style="font-size:0.95rem;cursor:default">
+          <span class="nav-logo-icon" style="width:32px;height:32px;font-size:0.9rem">🎓</span>UniGuide
+        </div>
+      </div>
+      <div class="dash-nav-section">Dashboard</div>
+      <div class="dash-nav-item" onclick="showDash('admin-dashboard')"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="dash-nav-section">Management</div>
+      <div class="dash-nav-item active" onclick="showDash('admin-users')"><span class="nav-icon">👥</span>User Management</div>
+      <div class="dash-nav-section">System</div>
+      <div class="dash-nav-item" onclick="showDash('admin-settings')"><span class="nav-icon">⚙️</span>Settings</div>
+      <div class="dash-nav-item" onclick="showDash('admin-chat')"><span class="nav-icon">💬</span>Messages</div>
+      <div class="dash-sign-out"><button onclick="doLogout()">Sign Out</button></div>
+    </aside>
+    <main class="dash-main">
+      <div class="dash-topbar">
+        <div>
+          <div class="dash-welcome">User <span>Management</span></div>
+        </div>
+        <div class="dash-topbar-right">
+          <div class="dash-search"><span>🔍</span><input placeholder="Search users…"></div>
+          <button class="btn btn-primary" style="font-size:0.82rem;padding:0.5rem 1.1rem" onclick="openModal('modal-add-user')">+ Add User</button>
+        </div>
+      </div>
+      <div class="stats-row" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-green">✅</div>
+          <div><div class="stat-num" id="au-active">—</div><div class="stat-label">Active</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-pink">🚫</div>
+          <div><div class="stat-num" id="au-inactive">—</div><div class="stat-label">Inactive</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-purple">👥</div>
+          <div><div class="stat-num" id="au-total">—</div><div class="stat-label">Total</div></div>
+        </div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card-title">Users</div>
+        <table class="dash-table">
+          <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="admin-user-tbody"></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: ADMIN — SETTINGS
+═══════════════════════════════════════════════════ -->
+<div id="page-admin-settings" class="page">
+  <div class="dash-layout">
+    <aside class="dash-sidebar">
+      <div class="dash-sidebar-header">
+        <div class="nav-logo" style="font-size:0.95rem;cursor:default">
+          <span class="nav-logo-icon" style="width:32px;height:32px;font-size:0.9rem">🎓</span>UniGuide
+        </div>
+      </div>
+      <div class="dash-nav-section">Dashboard</div>
+      <div class="dash-nav-item" onclick="showDash('admin-dashboard')"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="dash-nav-section">Management</div>
+      <div class="dash-nav-item" onclick="showDash('admin-users')"><span class="nav-icon">👥</span>User Management</div>
+      <div class="dash-nav-section">System</div>
+      <div class="dash-nav-item active" onclick="showDash('admin-settings')"><span class="nav-icon">⚙️</span>Settings</div>
+      <div class="dash-nav-item" onclick="showDash('admin-chat')"><span class="nav-icon">💬</span>Messages</div>
+      <div class="dash-sign-out"><button onclick="doLogout()">Sign Out</button></div>
+    </aside>
+    <main class="dash-main">
+      <div class="dash-topbar"><div class="dash-welcome">Settings</div></div>
+      <div class="settings-grid">
+        <div class="dash-card">
+          <div class="dash-card-title">Profile</div>
+          <div class="profile-section">
+            <div class="profile-avatar-lg">🛡️</div>
+            <div class="profile-name-block">
+              <div class="pname" id="admin-profile-name">Admin User</div>
+              <div class="pemail" id="admin-profile-email">admin@uniguide.com</div>
+            </div>
+          </div>
+          <div class="mini-stats-row">
+            <div class="mini-stat"><div class="mini-stat-num">512</div><div class="mini-stat-label">Actions</div></div>
+            <div class="mini-stat"><div class="mini-stat-num">22</div><div class="mini-stat-label">Days Active</div></div>
+            <div class="mini-stat"><div class="mini-stat-num">8</div><div class="mini-stat-label">Reports</div></div>
+          </div>
+          <div class="settings-label">Name</div>
+          <input class="settings-input" type="text" placeholder="Full name">
+          <div class="settings-label">E-mail</div>
+          <input class="settings-input" type="email" placeholder="Email address">
+          <button class="btn btn-primary" style="font-size:0.82rem" onclick="toast('Profile saved! ✓')">Save Changes</button>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-title">Dashboard Overview</div>
+          <div class="mini-chart" style="height:90px;margin-bottom:0.5rem">
+            <div class="mini-bar" style="height:42%"></div>
+            <div class="mini-bar" style="height:70%"></div>
+            <div class="mini-bar" style="height:58%"></div>
+            <div class="mini-bar highlight" style="height:92%"></div>
+            <div class="mini-bar" style="height:68%"></div>
+            <div class="mini-bar" style="height:44%"></div>
+            <div class="mini-bar" style="height:30%"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:rgba(255,255,255,0.25)">
+            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-title">App Settings</div>
+          <div class="settings-label">Application Theme</div>
+          <select class="settings-input" style="cursor:pointer">
+            <option>Dark Mode</option><option>Light Mode</option><option>System Default</option>
+          </select>
+          <div class="settings-label">Change Password</div>
+          <input class="settings-input" type="password" placeholder="New password">
+          <input class="settings-input" type="password" placeholder="Confirm new password">
+          <button class="btn btn-outline" style="font-size:0.82rem">Update Password</button>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-title">Notification</div>
+          <div class="toggle-row"><div class="toggle-label">Add Notification</div><button class="toggle-switch on" onclick="this.classList.toggle('on')"></button></div>
+          <div class="toggle-row"><div class="toggle-label">Post Notification</div><button class="toggle-switch on" onclick="this.classList.toggle('on')"></button></div>
+          <div class="toggle-row"><div class="toggle-label">Message Notification</div><button class="toggle-switch" onclick="this.classList.toggle('on')"></button></div>
+          <div class="toggle-row"><div class="toggle-label">Change Password</div><button class="toggle-switch on" onclick="this.classList.toggle('on')"></button></div>
+          <div class="toggle-row"><div class="toggle-label">Two-Factor Auth</div><button class="toggle-switch" onclick="this.classList.toggle('on')"></button></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: ADMIN — CHAT / MESSAGES
+═══════════════════════════════════════════════════ -->
+<div id="page-admin-chat" class="page">
+  <div style="padding-top:var(--nav-h);display:flex;height:100vh;flex-direction:column">
+    <div style="display:flex;flex:1;overflow:hidden">
+      <!-- Chat sidebar (contacts) -->
+      <div style="width:230px;background:linear-gradient(180deg,#7c3aed 0%,#6d28d9 50%,#5b21b6 100%);border-right:none;display:flex;flex-direction:column">
+        <!-- Mini nav -->
+        <div style="padding:1rem;border-bottom:1px solid rgba(124,58,237,0.1)">
+          <div class="nav-logo" style="font-size:0.85rem;margin-bottom:0.75rem;cursor:default">
+            <span class="nav-logo-icon" style="width:28px;height:28px;font-size:0.8rem">🎓</span>UniGuide
+          </div>
+          <div class="dash-nav-item" style="padding:0.4rem 0" onclick="showDash('admin-dashboard')"><span class="nav-icon">🏠</span>Dashboard</div>
+          <div class="dash-nav-item" style="padding:0.4rem 0" onclick="showDash('admin-users')"><span class="nav-icon">👥</span>Users</div>
+          <div class="dash-nav-item active" style="padding:0.4rem 0" onclick="showDash('admin-chat')"><span class="nav-icon">💬</span>Messages</div>
+          <div class="dash-nav-item" style="padding:0.4rem 0" onclick="showDash('admin-settings')"><span class="nav-icon">⚙️</span>Settings</div>
+        </div>
+        <div class="chat-sidebar-title">Messages</div>
+        <div class="chat-contact active">
+          <div class="chat-contact-avatar">👤</div>
+          <div><div class="chat-contact-name">Phat Khemarin</div><div class="chat-contact-preview">Hey, I need help with…</div></div>
+        </div>
+        <div class="chat-contact">
+          <div class="chat-contact-avatar">🧑</div>
+          <div><div class="chat-contact-name">Kong Tana</div><div class="chat-contact-preview">Thanks for the update!</div></div>
+        </div>
+        <div class="chat-contact">
+          <div class="chat-contact-avatar">👩</div>
+          <div><div class="chat-contact-name">Chrin Bunsopiney</div><div class="chat-contact-preview">When will it be live?</div></div>
+        </div>
+        <div style="margin-top:auto;padding:1rem;border-top:1px solid rgba(124,58,237,0.12)">
+          <button style="width:100%;padding:0.5rem;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);border-radius:8px;color:#f87171;font-family:'Space Grotesk',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer" onclick="doLogout()">Sign Out</button>
+        </div>
+      </div>
+      <!-- Chat main area -->
+      <div class="chat-main">
+        <div class="chat-header">
+          <div class="chat-contact-avatar" style="width:36px;height:36px;font-size:0.9rem">👤</div>
+          <div><div class="chat-header-name">Phat Khemarin</div><div class="chat-header-status">● Online</div></div>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+          <div class="chat-msg">
+            <div class="chat-msg-avatar">👤</div>
+            <div><div class="chat-bubble">Hey Admin, I need some help with my major recommendation. The system suggested Data Science but I'm not sure it's right for me.</div></div>
+          </div>
+          <div class="chat-msg sent">
+            <div class="chat-msg-avatar">🛡️</div>
+            <div><div class="chat-bubble">Hi Khemarin! I can help you review your assessment results. Can you tell me more about your interests and strengths?</div></div>
+          </div>
+          <div class="chat-msg">
+            <div class="chat-msg-avatar">👤</div>
+            <div><div class="chat-bubble">I'm really good at problem solving and math, but I also enjoy creative work. Maybe something that combines both?</div></div>
+          </div>
+          <div class="chat-msg sent">
+            <div class="chat-msg-avatar">🛡️</div>
+            <div><div class="chat-bubble">That sounds like UX/UI Design or Human-Computer Interaction might be a great fit! Let me update your profile.</div></div>
+          </div>
+        </div>
+        <div class="chat-input-bar">
+          <input class="chat-input" id="chat-input-field" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendChat()">
+          <button class="chat-send-btn" onclick="sendChat()">➤</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: QUIZ — QUESTION 1
+═══════════════════════════════════════════════════ -->
+<div id="page-quiz-1" class="page">
+  <div class="quiz-page">
+    <div class="quiz-card">
+      <div class="quiz-progress">
+        <div class="quiz-dot active" id="qdot-1-1"></div>
+        <div class="quiz-dot" id="qdot-1-2"></div>
+        <div class="quiz-dot" id="qdot-1-3"></div>
+        <div class="quiz-dot" id="qdot-1-4"></div>
+        <div class="quiz-dot" id="qdot-1-5"></div>
+      </div>
+      <div class="quiz-step">Question 1 of 5</div>
+      <div class="quiz-title">Question 1</div>
+      <div class="quiz-question">How much do you enjoy reading complex texts and writing analytically?</div>
+      <div class="quiz-rating" id="rating-1">
+        <button class="rating-btn" onclick="selectRating(1,1)">1</button>
+        <button class="rating-btn" onclick="selectRating(1,2)">2</button>
+        <button class="rating-btn" onclick="selectRating(1,3)">3</button>
+        <button class="rating-btn" onclick="selectRating(1,4)">4</button>
+        <button class="rating-btn" onclick="selectRating(1,5)">5</button>
+      </div>
+      <div class="quiz-rating-labels"><span>Not Interested</span><span>Very Interested</span></div>
+      <div class="quiz-nav">
+        <button class="btn-quiz btn-quiz-primary" onclick="quizNext(1)">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: QUIZ — QUESTION 2
+═══════════════════════════════════════════════════ -->
+<div id="page-quiz-2" class="page">
+  <div class="quiz-page">
+    <div class="quiz-card">
+      <div class="quiz-progress">
+        <div class="quiz-dot done" id="qdot-2-1"></div>
+        <div class="quiz-dot active" id="qdot-2-2"></div>
+        <div class="quiz-dot" id="qdot-2-3"></div>
+        <div class="quiz-dot" id="qdot-2-4"></div>
+        <div class="quiz-dot" id="qdot-2-5"></div>
+      </div>
+      <div class="quiz-step">Question 2 of 5</div>
+      <div class="quiz-title">Question 2</div>
+      <div class="quiz-question">How much do you enjoy solving mathematical problems and logical puzzles?</div>
+      <div class="quiz-rating" id="rating-2">
+        <button class="rating-btn" onclick="selectRating(2,1)">1</button>
+        <button class="rating-btn" onclick="selectRating(2,2)">2</button>
+        <button class="rating-btn" onclick="selectRating(2,3)">3</button>
+        <button class="rating-btn" onclick="selectRating(2,4)">4</button>
+        <button class="rating-btn" onclick="selectRating(2,5)">5</button>
+      </div>
+      <div class="quiz-rating-labels"><span>Not Interested</span><span>Very Interested</span></div>
+      <div class="quiz-nav has-back">
+        <button class="btn-quiz btn-quiz-ghost" onclick="showPage('quiz-1')">Back</button>
+        <button class="btn-quiz btn-quiz-primary" onclick="quizNext(2)">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: QUIZ — QUESTION 3
+═══════════════════════════════════════════════════ -->
+<div id="page-quiz-3" class="page">
+  <div class="quiz-page">
+    <div class="quiz-card">
+      <div class="quiz-progress">
+        <div class="quiz-dot done"></div>
+        <div class="quiz-dot done"></div>
+        <div class="quiz-dot active"></div>
+        <div class="quiz-dot"></div>
+        <div class="quiz-dot"></div>
+      </div>
+      <div class="quiz-step">Question 3 of 5</div>
+      <div class="quiz-title">Question 3</div>
+      <div class="quiz-question">How interested are you in conducting experiments and scientific research?</div>
+      <div class="quiz-rating" id="rating-3">
+        <button class="rating-btn" onclick="selectRating(3,1)">1</button>
+        <button class="rating-btn" onclick="selectRating(3,2)">2</button>
+        <button class="rating-btn" onclick="selectRating(3,3)">3</button>
+        <button class="rating-btn" onclick="selectRating(3,4)">4</button>
+        <button class="rating-btn" onclick="selectRating(3,5)">5</button>
+      </div>
+      <div class="quiz-rating-labels"><span>Not Interested</span><span>Very Interested</span></div>
+      <div class="quiz-nav has-back">
+        <button class="btn-quiz btn-quiz-ghost" onclick="showPage('quiz-2')">Back</button>
+        <button class="btn-quiz btn-quiz-primary" onclick="quizNext(3)">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: QUIZ — QUESTION 4
+═══════════════════════════════════════════════════ -->
+<div id="page-quiz-4" class="page">
+  <div class="quiz-page">
+    <div class="quiz-card">
+      <div class="quiz-progress">
+        <div class="quiz-dot done"></div>
+        <div class="quiz-dot done"></div>
+        <div class="quiz-dot done"></div>
+        <div class="quiz-dot active"></div>
+        <div class="quiz-dot"></div>
+      </div>
+      <div class="quiz-step">Question 4 of 5</div>
+      <div class="quiz-title">Question 4</div>
+      <div class="quiz-question">Do you prefer working independently or collaborating in a team?</div>
+      <div class="quiz-rating" id="rating-4">
+        <button class="rating-btn" onclick="selectRating(4,1)">1</button>
+        <button class="rating-btn" onclick="selectRating(4,2)">2</button>
+        <button class="rating-btn" onclick="selectRating(4,3)">3</button>
+        <button class="rating-btn" onclick="selectRating(4,4)">4</button>
+        <button class="rating-btn" onclick="selectRating(4,5)">5</button>
+      </div>
+      <div class="quiz-rating-labels"><span>Independent</span><span>Team Player</span></div>
+      <div class="quiz-nav has-back">
+        <button class="btn-quiz btn-quiz-ghost" onclick="showPage('quiz-3')">Back</button>
+        <button class="btn-quiz btn-quiz-primary" onclick="quizNext(4)">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: QUIZ — QUESTION 5
+═══════════════════════════════════════════════════ -->
+<div id="page-quiz-5" class="page">
+  <div class="quiz-page">
+    <div class="quiz-card">
+      <div class="quiz-progress">
+        <div class="quiz-dot done"></div>
+        <div class="quiz-dot done"></div>
+        <div class="quiz-dot done"></div>
+        <div class="quiz-dot done"></div>
+        <div class="quiz-dot active"></div>
+      </div>
+      <div class="quiz-step">Question 5 of 5</div>
+      <div class="quiz-title">Question 5</div>
+      <div class="quiz-question">How important is it for your work to directly help people or society?</div>
+      <div class="quiz-rating" id="rating-5">
+        <button class="rating-btn" onclick="selectRating(5,1)">1</button>
+        <button class="rating-btn" onclick="selectRating(5,2)">2</button>
+        <button class="rating-btn" onclick="selectRating(5,3)">3</button>
+        <button class="rating-btn" onclick="selectRating(5,4)">4</button>
+        <button class="rating-btn" onclick="selectRating(5,5)">5</button>
+      </div>
+      <div class="quiz-rating-labels"><span>Not Interested</span><span>Very Interested</span></div>
+      <div class="quiz-nav has-back">
+        <button class="btn-quiz btn-quiz-ghost" onclick="showPage('quiz-4')">Back</button>
+        <button class="btn-quiz btn-quiz-primary" onclick="submitQuiz()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: QUIZ RESULTS
+═══════════════════════════════════════════════════ -->
+<div id="page-quiz-results" class="page">
+  <div class="results-page">
+    <div class="results-header">
+      <h1>🎉 Explore Your Future!</h1>
+      <p>Based on your answers, here are the best majors for you</p>
+    </div>
+    <div class="majors-grid" id="majors-grid">
+      <!-- rendered by JS -->
+    </div>
+    <div class="results-actions">
+      <button class="btn-retake" onclick="retakeQuiz()">🔄 Retake Quiz</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: MAJOR DETAIL
+═══════════════════════════════════════════════════ -->
+<div id="page-major-detail" class="page">
+  <div class="major-detail-page">
+    <div class="detail-header">
+      <div class="detail-icon-wrap" id="detail-icon">💻</div>
+      <h1 class="detail-title" id="detail-name">Major</h1>
+      <p class="detail-subtitle" id="detail-desc">Description here.</p>
+    </div>
+    <div class="detail-grid" id="detail-grid">
+      <!-- rendered by JS -->
+    </div>
+    <button class="detail-back-btn" onclick="showPage('quiz-results')">← Back to Results</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: SUPER ADMIN LOGIN
+═══════════════════════════════════════════════════ -->
+<div id="page-sa-login" class="page">
+  <div class="sa-auth-page">
+    <div class="sa-auth-card">
+      <div class="sa-auth-brand">
+        <div class="sa-auth-shield">🛡️</div>
+        <div class="sa-auth-badge">Super Admin Portal</div>
+        <div class="sa-auth-title">Secure Access</div>
+        <div class="sa-auth-subtitle">Sign in with your Super Admin credentials</div>
+      </div>
+
+      <div id="sa-alert" class="alert alert-error" style="display:none;margin-bottom:1rem;border-radius:10px"></div>
+
+      <label class="sa-auth-label">Email Address</label>
+      <input class="sa-auth-input" type="email" id="sal-email" placeholder="superadmin@uniguide.com"
+        onkeydown="if(event.key==='Enter')doSALogin()">
+
+      <label class="sa-auth-label">Password</label>
+      <div style="position:relative;margin-bottom:0">
+        <input class="sa-auth-input" type="password" id="sal-pass" placeholder="••••••••"
+          style="margin-bottom:0;padding-right:2.75rem"
+          onkeydown="if(event.key==='Enter')doSALogin()">
+        <button onclick="togglePassVis('sal-pass',this)"
+          style="position:absolute;right:0.85rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1rem;color:rgba(255,255,255,0.4)">👁</button>
+      </div>
+      <div style="margin-bottom:1.25rem"></div>
+
+      <button class="sa-auth-btn" onclick="doSALogin()">🔐 Sign In as Super Admin</button>
+
+      <div class="sa-auth-links">
+        <a onclick="showPage('admin-login')" class="highlight">← Back to Admin Login</a>
+        <a onclick="showPage('login')">Back to User Login</a>
+      </div>
+
+      <div class="sa-auth-demo">
+        <div class="sa-auth-demo-label">Demo Credentials</div>
+        <div class="sa-auth-demo-creds">super@uniguide.com &nbsp;/&nbsp; super123</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: MY RESULTS (user quiz history)
+═══════════════════════════════════════════════════ -->
+<div id="page-my-results" class="page">
+  <div class="my-results-page">
+    <div class="my-results-header">
+      <h1>📋 My Quiz Results</h1>
+      <p>Your past major predictions — tap any major to view full details</p>
+    </div>
+    <div id="my-results-container" class="my-results-list">
+      <!-- rendered by JS -->
+    </div>
+    <div class="my-results-actions">
+      <button class="btn-retake" onclick="showPage('quiz-1');retakeQuiz()">🎯 Take Quiz Again</button>
+      &nbsp;
+      <button class="btn-retake" style="margin-top:0.5rem" onclick="showPage('home')">← Back to Home</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     MODALS
+═══════════════════════════════════════════════════ -->
+<!-- Add Admin Modal -->
+<div class="modal-overlay" id="modal-add-admin" onclick="if(event.target===this)closeModal('modal-add-admin')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-add-admin')">✕</button>
+    <div class="modal-title">➕ Add New Admin</div>
+    <div class="form-group">
+      <label class="form-label">Full Name</label>
+      <input class="form-input" type="text" id="new-admin-name" placeholder="Admin's full name">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input class="form-input" type="email" id="new-admin-email" placeholder="Admin's email">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Role</label>
+      <select class="form-input" id="new-admin-role" style="cursor:pointer">
+        <option value="admin">Admin</option>
+        <option value="superadmin">Super Admin</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input class="form-input" type="password" id="new-admin-pass" placeholder="Temporary password">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Confirm Password</label>
+      <input class="form-input" type="password" id="new-admin-pass2" placeholder="Confirm password">
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('modal-add-admin')">Cancel</button>
+      <button class="btn btn-primary" onclick="doAddAdmin()">Create Admin</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add User Modal -->
+<div class="modal-overlay" id="modal-add-user" onclick="if(event.target===this)closeModal('modal-add-user')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-add-user')">✕</button>
+    <div class="modal-title">➕ Add New User</div>
+    <div class="form-group">
+      <label class="form-label">Full Name</label>
+      <input class="form-input" type="text" id="new-user-name" placeholder="User's full name">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input class="form-input" type="email" id="new-user-email" placeholder="User's email">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Status</label>
+      <select class="form-input" id="new-user-status" style="cursor:pointer">
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input class="form-input" type="password" id="new-user-pass" placeholder="Temporary password">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Confirm Password</label>
+      <input class="form-input" type="password" id="new-user-pass2" placeholder="Confirm password">
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('modal-add-user')">Cancel</button>
+      <button class="btn btn-primary" onclick="doAddUser()">Create User</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="js/db.js"></script>
+<script src="js/router.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/init.js"></script>
+</body>
+</html>

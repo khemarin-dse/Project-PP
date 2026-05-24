@@ -1,0 +1,73 @@
+<!-- ═══════════════════════════════════════════════════
+     MODALS
+═══════════════════════════════════════════════════ -->
+<!-- Add Admin Modal -->
+<div class="modal-overlay" id="modal-add-admin" onclick="if(event.target===this)closeModal('modal-add-admin')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-add-admin')">✕</button>
+    <div class="modal-title">➕ Add New Admin</div>
+    <div class="form-group">
+      <label class="form-label">Full Name</label>
+      <input class="form-input" type="text" id="new-admin-name" placeholder="Admin's full name">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input class="form-input" type="email" id="new-admin-email" placeholder="Admin's email">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Role</label>
+      <select class="form-input" id="new-admin-role" style="cursor:pointer">
+        <option value="admin">Admin</option>
+        <option value="superadmin">Super Admin</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input class="form-input" type="password" id="new-admin-pass" placeholder="Temporary password">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Confirm Password</label>
+      <input class="form-input" type="password" id="new-admin-pass2" placeholder="Confirm password">
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('modal-add-admin')">Cancel</button>
+      <button class="btn btn-primary" onclick="doAddAdmin()">Create Admin</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add User Modal -->
+<div class="modal-overlay" id="modal-add-user" onclick="if(event.target===this)closeModal('modal-add-user')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-add-user')">✕</button>
+    <div class="modal-title">➕ Add New User</div>
+    <div class="form-group">
+      <label class="form-label">Full Name</label>
+      <input class="form-input" type="text" id="new-user-name" placeholder="User's full name">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input class="form-input" type="email" id="new-user-email" placeholder="User's email">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Status</label>
+      <select class="form-input" id="new-user-status" style="cursor:pointer">
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input class="form-input" type="password" id="new-user-pass" placeholder="Temporary password">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Confirm Password</label>
+      <input class="form-input" type="password" id="new-user-pass2" placeholder="Confirm password">
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('modal-add-user')">Cancel</button>
+      <button class="btn btn-primary" onclick="doAddUser()">Create User</button>
+    </div>
+  </div>
+</div>
+

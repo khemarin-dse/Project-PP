@@ -1,0 +1,69 @@
+<!-- ═══════════════════════════════════════════════════
+     PAGE: ADMIN — CHAT / MESSAGES
+═══════════════════════════════════════════════════ -->
+<div id="page-admin-chat" class="page">
+  <div style="padding-top:var(--nav-h);display:flex;height:100vh;flex-direction:column">
+    <div style="display:flex;flex:1;overflow:hidden">
+      <!-- Chat sidebar (contacts) -->
+      <div style="width:230px;background:linear-gradient(180deg,#7c3aed 0%,#6d28d9 50%,#5b21b6 100%);border-right:none;display:flex;flex-direction:column">
+        <!-- Mini nav -->
+        <div style="padding:1rem;border-bottom:1px solid rgba(124,58,237,0.1)">
+          <div class="nav-logo" style="font-size:0.85rem;margin-bottom:0.75rem;cursor:default">
+            <span class="nav-logo-icon" style="width:28px;height:28px;font-size:0.8rem">🎓</span>UniGuide
+          </div>
+          <div class="dash-nav-item" style="padding:0.4rem 0" onclick="showDash('admin-dashboard')"><span class="nav-icon">🏠</span>Dashboard</div>
+          <div class="dash-nav-item" style="padding:0.4rem 0" onclick="showDash('admin-users')"><span class="nav-icon">👥</span>Users</div>
+          <div class="dash-nav-item active" style="padding:0.4rem 0" onclick="showDash('admin-chat')"><span class="nav-icon">💬</span>Messages</div>
+          <div class="dash-nav-item" style="padding:0.4rem 0" onclick="showDash('admin-settings')"><span class="nav-icon">⚙️</span>Settings</div>
+        </div>
+        <div class="chat-sidebar-title">Messages</div>
+        <div class="chat-contact active">
+          <div class="chat-contact-avatar">👤</div>
+          <div><div class="chat-contact-name">Phat Khemarin</div><div class="chat-contact-preview">Hey, I need help with…</div></div>
+        </div>
+        <div class="chat-contact">
+          <div class="chat-contact-avatar">🧑</div>
+          <div><div class="chat-contact-name">Kong Tana</div><div class="chat-contact-preview">Thanks for the update!</div></div>
+        </div>
+        <div class="chat-contact">
+          <div class="chat-contact-avatar">👩</div>
+          <div><div class="chat-contact-name">Chrin Bunsopiney</div><div class="chat-contact-preview">When will it be live?</div></div>
+        </div>
+        <div style="margin-top:auto;padding:1rem;border-top:1px solid rgba(124,58,237,0.12)">
+          <button style="width:100%;padding:0.5rem;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);border-radius:8px;color:#f87171;font-family:'Space Grotesk',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer" onclick="doLogout()">Sign Out</button>
+        </div>
+      </div>
+      <!-- Chat main area -->
+      <div class="chat-main">
+        <div class="chat-header">
+          <div class="chat-contact-avatar" style="width:36px;height:36px;font-size:0.9rem">👤</div>
+          <div><div class="chat-header-name">Phat Khemarin</div><div class="chat-header-status">● Online</div></div>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+          <div class="chat-msg">
+            <div class="chat-msg-avatar">👤</div>
+            <div><div class="chat-bubble">Hey Admin, I need some help with my major recommendation. The system suggested Data Science but I'm not sure it's right for me.</div></div>
+          </div>
+          <div class="chat-msg sent">
+            <div class="chat-msg-avatar">🛡️</div>
+            <div><div class="chat-bubble">Hi Khemarin! I can help you review your assessment results. Can you tell me more about your interests and strengths?</div></div>
+          </div>
+          <div class="chat-msg">
+            <div class="chat-msg-avatar">👤</div>
+            <div><div class="chat-bubble">I'm really good at problem solving and math, but I also enjoy creative work. Maybe something that combines both?</div></div>
+          </div>
+          <div class="chat-msg sent">
+            <div class="chat-msg-avatar">🛡️</div>
+            <div><div class="chat-bubble">That sounds like UX/UI Design or Human-Computer Interaction might be a great fit! Let me update your profile.</div></div>
+          </div>
+        </div>
+        <div class="chat-input-bar">
+          <input class="chat-input" id="chat-input-field" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendChat()">
+          <button class="chat-send-btn" onclick="sendChat()">➤</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,86 @@
+<!-- ═══════════════════════════════════════════════════
+     PAGE: SUPER ADMIN — USER MANAGEMENT (redesigned)
+═══════════════════════════════════════════════════ -->
+<div id="page-sa-users" class="page">
+  <div style="display:flex;min-height:100vh">
+    
+    <aside class="sa-sidebar">
+      <div class="sa-sidebar-brand">
+        <div class="sa-brand-icon">🛡️</div>
+        <div>
+          <div class="sa-brand-text">Super Admin</div>
+        </div>
+      </div>
+      <div style="padding:0.75rem 0">
+        <div class="sa-nav-item" onclick="showDash('sa-dashboard')"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="sa-nav-item" onclick="showDash('sa-management')"><span class="nav-icon">🛡️</span>Admins Management</div>
+      <div class="sa-nav-item active" onclick="showDash('sa-users')"><span class="nav-icon">👥</span>Users Management</div>
+      <div class="sa-nav-item" onclick="showDash('sa-activitylogs')"><span class="nav-icon">📋</span>Activity Logs</div>
+      <div class="sa-nav-item" onclick="showDash('sa-settings')"><span class="nav-icon">⚙️</span>Setting</div>
+      
+      </div>
+      <div class="sa-profile-foot" style="margin-top:auto;padding-bottom:0.5rem">
+        <div class="sa-profile-avatar">👑</div>
+        <div>
+          <div class="sa-profile-name" id="sa-foot-name-sa-users">Tana Kong</div>
+          <div class="sa-profile-role">Super Admin</div>
+        </div>
+      </div>
+      <div class="sa-sign-out">
+        <button onclick="doLogout()">↪ Sign out</button>
+      </div>
+    </aside>
+    <div class="sa-main">
+      
+      <div class="sa-topbar">
+        <div class="sa-topbar-left">
+          <div class="sa-topbar-title">≡ Dashboard</div>
+        </div>
+        <div class="sa-topbar-right">
+          <div class="sa-topbar-search"><span style="color:rgba(109,40,217,0.5)">🔍</span><input placeholder="Search..."></div>
+          <div style="font-size:1.2rem;cursor:pointer;color:#7c3aed">🔔</div>
+          <div class="sa-topbar-avatar">
+            <div class="sa-topbar-avatar-img">👑</div>
+            <div class="sa-topbar-avatar-info">
+              <div class="name" id="sa-topbar-name">Tana Kong</div>
+              <div class="role">Super Admin</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sa-content">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.75rem">
+          <div class="sa-card-title" style="font-size:1.2rem;font-weight:800;color:#3b0764;margin-bottom:0">Users Management</div>
+          <button class="sa-add-btn" onclick="openModal('modal-add-user')">+ Add User</button>
+        </div>
+        <!-- Online/Offline stats -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+          <div class="sa-online-card">
+            <div>
+              <div class="sa-online-label">User Online</div>
+              <div class="sa-online-num" id="sa-online-count">5,423</div>
+            </div>
+            <div class="sa-online-dot green"></div>
+          </div>
+          <div class="sa-online-card">
+            <div>
+              <div class="sa-online-label">User Offline</div>
+              <div class="sa-online-num" id="sa-offline-count">1,123</div>
+            </div>
+            <div class="sa-online-dot red"></div>
+          </div>
+        </div>
+        <div class="sa-card">
+          <table class="sa-table">
+            <thead><tr>
+              <th style="width:30px"></th>
+              <th>Username</th><th>Email</th><th>Role</th><th>User Status</th><th>Action</th>
+            </tr></thead>
+            <tbody id="user-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

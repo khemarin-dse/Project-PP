@@ -1,0 +1,31 @@
+<!-- ═══════════════════════════════════════════════════
+     PAGE: QUIZ — QUESTION 3
+═══════════════════════════════════════════════════ -->
+<div id="page-quiz-3" class="page">
+  <div class="quiz-page">
+    <div class="quiz-card">
+      <div class="quiz-progress">
+        <div class="quiz-dot done"></div>
+        <div class="quiz-dot done"></div>
+        <div class="quiz-dot active"></div>
+        <div class="quiz-dot"></div>
+        <div class="quiz-dot"></div>
+      </div>
+      <div class="quiz-step">Question 3 of 5</div>
+      <div class="quiz-title">Question 3</div>
+      <div class="quiz-question">How interested are you in conducting experiments and scientific research?</div>
+      <div class="quiz-rating" id="rating-3">
+        <button class="rating-btn" onclick="selectRating(3,1)">1</button>
+        <button class="rating-btn" onclick="selectRating(3,2)">2</button>
+        <button class="rating-btn" onclick="selectRating(3,3)">3</button>
+        <button class="rating-btn" onclick="selectRating(3,4)">4</button>
+        <button class="rating-btn" onclick="selectRating(3,5)">5</button>
+      </div>
+      <div class="quiz-rating-labels"><span>Not Interested</span><span>Very Interested</span></div>
+      <div class="quiz-nav has-back">
+        <button class="btn-quiz btn-quiz-ghost" onclick="showPage('quiz-2')">Back</button>
+        <button class="btn-quiz btn-quiz-primary" onclick="quizNext(3)">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
